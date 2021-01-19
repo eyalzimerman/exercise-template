@@ -6,6 +6,7 @@ function run() {
 /**/
     firstArr = JSON.parse(input);
     secondArr = JSON.parse(input2);
+    let newArr = [];
     for (let i = 0; i < secondArr.length; i++) {
         if (firstArr.includes(secondArr[i])) {
             continue;
@@ -13,7 +14,19 @@ function run() {
             firstArr.push(secondArr[i]);
         }
     }
-    out = firstArr;
+    while (firstArr.length > 0){
+        let minNumber = firstArr[0];
+        for(let i = 0; i < firstArr.length; i++) {
+            if (firstArr[i] < minNumber) {
+                minNumber = firstArr[i];
+            }
+        }
+        if (!newArr.includes(minNumber)) {
+            newArr.push(minNumber);
+        }
+        firstArr.splice(firstArr.indexOf(minNumber), 1)
+    }
+    out = newArr;
 /**/
     output.innerText = out;
 }
